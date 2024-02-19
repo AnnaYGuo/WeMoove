@@ -1,202 +1,270 @@
 \section{Introduction}
 \label{sec:intro}
 
-Please follow the steps outlined below when submitting your manuscript to the IEEE Computer Society Press.
-This style guide now has several important modifications (for example, you are no longer warned against the use of sticky tape to attach your artwork to the paper), so all authors should read this new version.
+In recent years, dance has surged in popularity, whether through TikTok trends in younger 
+generations, the growing fanbase for elaborate K-pop dance videos, or the performances in 
+reality competition shows (which themselves cover wide genres from ballet and contemporary 
+to ballroom dances). As a result of this growing interest, many eager dance novices have 
+attempted to self-teach from the abundant dance videos online, available through a variety 
+of platforms. However, such individuals often struggle with breaking down movements due to 
+the speed or intricacy with which they were executed.
+
+We aim to use Computer Vision to partition dance movements into more easily digestible chunks 
+by creating a model that can learn (vectorize) dance choreography from a given dance video, and 
+output it in a more human-readable form, such as by describing multiple steps in a motion and 
+adding counts or timings for context. By developing a tool that provides detailed descriptions 
+of human positions and gestures alongside counts or musical beats, learning dance choreographies 
+could become much more accessible and approachable for a broader audience.
 
 %-------------------------------------------------------------------------
-\subsection{Language}
+\subsection{Existing Attempts}
 
-All manuscripts must be in English.
+Several existing attempts have been made to tackle the challenge of learning dance from online 
+videos, each with its own approach and limitations. One such approach involves platforms that 
+generate reskinned versions of dance performances, offering visual references for users. These 
+platforms overlay graphics or animations onto the original video, highlighting key movements or 
+positions to provide guidance. While these reskinned versions serve as visual aids, they 
+typically do not offer active instruction or detailed breakdowns of the dance steps. As a result, 
+users may struggle to fully grasp the nuances and intricacies of the movements, limiting the 
+effectiveness of this approach as a learning tool.
 
-\subsection{Dual submission}
+Another example is a DancePal Hackathon project, which adopts a more technical approach by 
+comparing an ideal video with the end user's video skeletons. This method involves analyzing the 
+skeletal poses extracted from both videos and identifying discrepancies between them. While this 
+approach has the potential to provide personalized feedback to users based on their own performances, 
+it comes with several challenges. Firstly, it requires an ideal video with specific lighting, 
+background, and perspective conditions to serve as a reference, which may not always be feasible 
+to obtain. Additionally, accurately mapping movements onto predefined definitions can be difficult, 
+especially for complex dance sequences with varying styles and interpretations. As a result, the 
+effectiveness of this approach may be limited by the availability of suitable reference videos and 
+the accuracy of the mapping process.
 
-Please refer to the author guidelines on the \confName\ \confYear\ web page for a
-discussion of the policy on dual submissions.
-
-\subsection{Paper length}
-Papers, excluding the references section, must be no longer than eight pages in length.
-The references section will not be included in the page count, and there is no limit on the length of the references section.
-For example, a paper of eight pages with two pages of references would have a total length of 10 pages.
-{\bf There will be no extra page charges for \confName\ \confYear.}
-
-Overlength papers will simply not be reviewed.
-This includes papers where the margins and formatting are deemed to have been significantly altered from those laid down by this style guide.
-Note that this \LaTeX\ guide already sets figure captions and references in a smaller font.
-The reason such papers will not be reviewed is that there is no provision for supervised revisions of manuscripts.
-The reviewing process cannot determine the suitability of the paper for presentation in eight pages if it is reviewed in eleven.
-
-%-------------------------------------------------------------------------
-\subsection{The ruler}
-The \LaTeX\ style defines a printed ruler which should be present in the version submitted for review.
-The ruler is provided in order that reviewers may comment on particular lines in the paper without circumlocution.
-If you are preparing a document using a non-\LaTeX\ document preparation system, please arrange for an equivalent ruler to appear on the final output pages.
-The presence or absence of the ruler should not change the appearance of any other content on the page.
-The camera-ready copy should not contain a ruler.
-(\LaTeX\ users may use options of \texttt{cvpr.sty} to switch between different versions.)
-
-Reviewers:
-note that the ruler measurements do not align well with lines in the paper --- this turns out to be very difficult to do well when the paper contains many figures and equations, and, when done, looks ugly.
-Just use fractional references (\eg, this line is $087.5$), although in most cases one would expect that the approximate location will be adequate.
+Unlike reskinned versions of dance performances, our proposed method provides detailed instructional 
+breakdowns of dance movements, guiding learners through each step with clarity and precision. This 
+active instruction facilitates better understanding and retention of choreography. Additionally, our 
+method could be expanded to offer personalized feedback based on the analysis of the learner's own 
+video and that of an original dance video, ideally without the requirement for perfect lighting or 
+camera angle conditions.
 
 
-\subsection{Paper ID}
-Make sure that the Paper ID from the submission system is visible in the version submitted for review (replacing the ``*****'' you see in this document).
-If you are using the \LaTeX\ template, \textbf{make sure to update paper ID in the appropriate place in the tex file}.
+\subsection{Useful Techniques}
+
+Several computer vision techniques offer promising avenues for addressing the challenge of learning 
+dance from online videos by providing deeper insights into the dynamics and nuances of dance 
+movements. One such technique involves exploring 3D models instead of traditional 2D skeletonization
+ methods to create more comprehensive representations of dance movements. Unlike 2D skeletonization, 
+ which captures only the spatial coordinates of key body joints in a single plane, 3D modeling 
+ techniques can capture the full spatial extent of movements, including depth information. This 
+ allows for a more accurate and detailed representation of the dancer's body and movements in 
+ three-dimensional space, which is particularly valuable for capturing complex and multi-dimensional 
+ dance choreographies.
+
+ In addition to 3D modeling, other computer vision techniques such as action recognition, pose 
+estimation, trajectory analysis, and video segmentation and tracking can provide valuable insights 
+into the dynamics of dance movements. Action recognition algorithms can automatically identify and 
+classify different dance gestures and sequences, allowing for automated analysis of choreographic 
+patterns and styles. Pose estimation techniques can accurately estimate the skeletal poses of 
+dancers from video frames, providing a structural representation of their movements that can be 
+used for further analysis and interpretation.
+
+Trajectory analysis techniques can track the trajectories of specific body parts or movements 
+over time, allowing for the analysis of movement patterns, velocities, and accelerations. This 
+can provide valuable insights into the rhythmic and dynamic aspects of dance performances, 
+helping learners to better understand the timing and pacing of movements. Video segmentation and 
+tracking methods can segment dance videos into individual sequences or movements, allowing for more 
+focused analysis and comparison of specific choreographic elements.
+
+By leveraging these advanced computer vision techniques, learners can gain a deeper understanding 
+of the dynamics and nuances of dance movements, facilitating more effective learning experiences. 
+These techniques can help learners to break down complex choreographies into smaller, more 
+manageable components, identify areas for improvement, and refine their technique with greater 
+precision and accuracy. Overall, the integration of computer vision into dance learning has the 
+potential to revolutionize the way dance is taught and learned, making it more accessible, engaging, 
+and effective for dancers of all levels.
+
+% \subsection{Paper length}
+% Papers, excluding the references section, must be no longer than eight pages in length.
+% The references section will not be included in the page count, and there is no limit on the length of the references section.
+% For example, a paper of eight pages with two pages of references would have a total length of 10 pages.
+% {\bf There will be no extra page charges for \confName\ \confYear.}
+
+% Overlength papers will simply not be reviewed.
+% This includes papers where the margins and formatting are deemed to have been significantly altered from those laid down by this style guide.
+% Note that this \LaTeX\ guide already sets figure captions and references in a smaller font.
+% The reason such papers will not be reviewed is that there is no provision for supervised revisions of manuscripts.
+% The reviewing process cannot determine the suitability of the paper for presentation in eight pages if it is reviewed in eleven.
+
+% %-------------------------------------------------------------------------
+% \subsection{The ruler}
+% The \LaTeX\ style defines a printed ruler which should be present in the version submitted for review.
+% The ruler is provided in order that reviewers may comment on particular lines in the paper without circumlocution.
+% If you are preparing a document using a non-\LaTeX\ document preparation system, please arrange for an equivalent ruler to appear on the final output pages.
+% The presence or absence of the ruler should not change the appearance of any other content on the page.
+% The camera-ready copy should not contain a ruler.
+% (\LaTeX\ users may use options of \texttt{cvpr.sty} to switch between different versions.)
+
+% Reviewers:
+% note that the ruler measurements do not align well with lines in the paper --- this turns out to be very difficult to do well when the paper contains many figures and equations, and, when done, looks ugly.
+% Just use fractional references (\eg, this line is $087.5$), although in most cases one would expect that the approximate location will be adequate.
 
 
-\subsection{Mathematics}
-
-Please number all of your sections and displayed equations as in these examples:
-\begin{equation}
-  E = m\cdot c^2
-  \label{eq:important}
-\end{equation}
-and
-\begin{equation}
-  v = a\cdot t.
-  \label{eq:also-important}
-\end{equation}
-It is important for readers to be able to refer to any particular equation.
-Just because you did not refer to it in the text does not mean some future reader might not need to refer to it.
-It is cumbersome to have to use circumlocutions like ``the equation second from the top of page 3 column 1''.
-(Note that the ruler will not be present in the final copy, so is not an alternative to equation numbers).
-All authors will benefit from reading Mermin's description of how to write mathematics:
-\url{http://www.pamitc.org/documents/mermin.pdf}.
-
-\subsection{Blind review}
-
-Many authors misunderstand the concept of anonymizing for blind review.
-Blind review does not mean that one must remove citations to one's own work---in fact it is often impossible to review a paper unless the previous citations are known and available.
-
-Blind review means that you do not use the words ``my'' or ``our'' when citing previous work.
-That is all.
-(But see below for tech reports.)
-
-Saying ``this builds on the work of Lucy Smith [1]'' does not say that you are Lucy Smith;
-it says that you are building on her work.
-If you are Smith and Jones, do not say ``as we show in [7]'', say ``as Smith and Jones show in [7]'' and at the end of the paper, include reference 7 as you would any other cited work.
-
-An example of a bad paper just asking to be rejected:
-\begin{quote}
-\begin{center}
-    An analysis of the frobnicatable foo filter.
-\end{center}
-
-   In this paper we present a performance analysis of our previous paper [1], and show it to be inferior to all previously known methods.
-   Why the previous paper was accepted without this analysis is beyond me.
-
-   [1] Removed for blind review
-\end{quote}
+% \subsection{Paper ID}
+% Make sure that the Paper ID from the submission system is visible in the version submitted for review (replacing the ``*****'' you see in this document).
+% If you are using the \LaTeX\ template, \textbf{make sure to update paper ID in the appropriate place in the tex file}.
 
 
-An example of an acceptable paper:
-\begin{quote}
-\begin{center}
-     An analysis of the frobnicatable foo filter.
-\end{center}
+% \subsection{Mathematics}
 
-   In this paper we present a performance analysis of the  paper of Smith \etal [1], and show it to be inferior to all previously known methods.
-   Why the previous paper was accepted without this analysis is beyond me.
+% Please number all of your sections and displayed equations as in these examples:
+% \begin{equation}
+%   E = m\cdot c^2
+%   \label{eq:important}
+% \end{equation}
+% and
+% \begin{equation}
+%   v = a\cdot t.
+%   \label{eq:also-important}
+% \end{equation}
+% It is important for readers to be able to refer to any particular equation.
+% Just because you did not refer to it in the text does not mean some future reader might not need to refer to it.
+% It is cumbersome to have to use circumlocutions like ``the equation second from the top of page 3 column 1''.
+% (Note that the ruler will not be present in the final copy, so is not an alternative to equation numbers).
+% All authors will benefit from reading Mermin's description of how to write mathematics:
+% \url{http://www.pamitc.org/documents/mermin.pdf}.
 
-   [1] Smith, L and Jones, C. ``The frobnicatable foo filter, a fundamental contribution to human knowledge''. Nature 381(12), 1-213.
-\end{quote}
+% \subsection{Blind review}
 
-If you are making a submission to another conference at the same time, which covers similar or overlapping material, you may need to refer to that submission in order to explain the differences, just as you would if you had previously published related work.
-In such cases, include the anonymized parallel submission~\cite{Authors14} as supplemental material and cite it as
-\begin{quote}
-[1] Authors. ``The frobnicatable foo filter'', F\&G 2014 Submission ID 324, Supplied as supplemental material {\tt fg324.pdf}.
-\end{quote}
+% Many authors misunderstand the concept of anonymizing for blind review.
+% Blind review does not mean that one must remove citations to one's own work---in fact it is often impossible to review a paper unless the previous citations are known and available.
 
-Finally, you may feel you need to tell the reader that more details can be found elsewhere, and refer them to a technical report.
-For conference submissions, the paper must stand on its own, and not {\em require} the reviewer to go to a tech report for further details.
-Thus, you may say in the body of the paper ``further details may be found in~\cite{Authors14b}''.
-Then submit the tech report as supplemental material.
-Again, you may not assume the reviewers will read this material.
+% Blind review means that you do not use the words ``my'' or ``our'' when citing previous work.
+% That is all.
+% (But see below for tech reports.)
 
-Sometimes your paper is about a problem which you tested using a tool that is widely known to be restricted to a single institution.
-For example, let's say it's 1969, you have solved a key problem on the Apollo lander, and you believe that the 1970 audience would like to hear about your
-solution.
-The work is a development of your celebrated 1968 paper entitled ``Zero-g frobnication: How being the only people in the world with access to the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
+% Saying ``this builds on the work of Lucy Smith [1]'' does not say that you are Lucy Smith;
+% it says that you are building on her work.
+% If you are Smith and Jones, do not say ``as we show in [7]'', say ``as Smith and Jones show in [7]'' and at the end of the paper, include reference 7 as you would any other cited work.
 
-You can handle this paper like any other.
-Do not write ``We show how to improve our previous work [Anonymous, 1968].
-This time we tested the algorithm on a lunar lander [name of lander removed for blind review]''.
-That would be silly, and would immediately identify the authors.
-Instead write the following:
-\begin{quotation}
-\noindent
-   We describe a system for zero-g frobnication.
-   This system is new because it handles the following cases:
-   A, B.  Previous systems [Zeus et al. 1968] did not  handle case B properly.
-   Ours handles it by including a foo term in the bar integral.
+% An example of a bad paper just asking to be rejected:
+% \begin{quote}
+% \begin{center}
+%     An analysis of the frobnicatable foo filter.
+% \end{center}
 
-   ...
+%    In this paper we present a performance analysis of our previous paper [1], and show it to be inferior to all previously known methods.
+%    Why the previous paper was accepted without this analysis is beyond me.
 
-   The proposed system was integrated with the Apollo lunar lander, and went all the way to the moon, don't you know.
-   It displayed the following behaviours, which show how well we solved cases A and B: ...
-\end{quotation}
-As you can see, the above text follows standard scientific convention, reads better than the first version, and does not explicitly name you as the authors.
-A reviewer might think it likely that the new paper was written by Zeus \etal, but cannot make any decision based on that guess.
-He or she would have to be sure that no other authors could have been contracted to solve problem B.
-\medskip
+%    [1] Removed for blind review
+% \end{quote}
 
-\noindent
-FAQ\medskip\\
-{\bf Q:} Are acknowledgements OK?\\
-{\bf A:} No.  Leave them for the final copy.\medskip\\
-{\bf Q:} How do I cite my results reported in open challenges?
-{\bf A:} To conform with the double-blind review policy, you can report results of other challenge participants together with your results in your paper.
-For your results, however, you should not identify yourself and should not mention your participation in the challenge.
-Instead present your results referring to the method proposed in your paper and draw conclusions based on the experimental comparison to other results.\medskip\\
 
-\begin{figure}[t]
-  \centering
-  \fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
-   %\includegraphics[width=0.8\linewidth]{egfigure.eps}
+% An example of an acceptable paper:
+% \begin{quote}
+% \begin{center}
+%      An analysis of the frobnicatable foo filter.
+% \end{center}
 
-   \caption{Example of caption.
-   It is set in Roman so that mathematics (always set in Roman: $B \sin A = A \sin B$) may be included without an ugly clash.}
-   \label{fig:onecol}
-\end{figure}
+%    In this paper we present a performance analysis of the  paper of Smith \etal [1], and show it to be inferior to all previously known methods.
+%    Why the previous paper was accepted without this analysis is beyond me.
 
-\subsection{Miscellaneous}
+%    [1] Smith, L and Jones, C. ``The frobnicatable foo filter, a fundamental contribution to human knowledge''. Nature 381(12), 1-213.
+% \end{quote}
 
-\noindent
-Compare the following:\\
-\begin{tabular}{ll}
- \verb'$conf_a$' &  $conf_a$ \\
- \verb'$\mathit{conf}_a$' & $\mathit{conf}_a$
-\end{tabular}\\
-See The \TeX book, p165.
+% If you are making a submission to another conference at the same time, which covers similar or overlapping material, you may need to refer to that submission in order to explain the differences, just as you would if you had previously published related work.
+% In such cases, include the anonymized parallel submission~\cite{Authors14} as supplemental material and cite it as
+% \begin{quote}
+% [1] Authors. ``The frobnicatable foo filter'', F\&G 2014 Submission ID 324, Supplied as supplemental material {\tt fg324.pdf}.
+% \end{quote}
 
-The space after \eg, meaning ``for example'', should not be a sentence-ending space.
-So \eg is correct, {\em e.g.} is not.
-The provided \verb'\eg' macro takes care of this.
+% Finally, you may feel you need to tell the reader that more details can be found elsewhere, and refer them to a technical report.
+% For conference submissions, the paper must stand on its own, and not {\em require} the reviewer to go to a tech report for further details.
+% Thus, you may say in the body of the paper ``further details may be found in~\cite{Authors14b}''.
+% Then submit the tech report as supplemental material.
+% Again, you may not assume the reviewers will read this material.
 
-When citing a multi-author paper, you may save space by using ``et alia'', shortened to ``\etal'' (not ``{\em et.\ al.}'' as ``{\em et}'' is a complete word).
-If you use the \verb'\etal' macro provided, then you need not worry about double periods when used at the end of a sentence as in Alpher \etal.
-However, use it only when there are three or more authors.
-Thus, the following is correct:
-   ``Frobnication has been trendy lately.
-   It was introduced by Alpher~\cite{Alpher02}, and subsequently developed by
-   Alpher and Fotheringham-Smythe~\cite{Alpher03}, and Alpher \etal~\cite{Alpher04}.''
+% Sometimes your paper is about a problem which you tested using a tool that is widely known to be restricted to a single institution.
+% For example, let's say it's 1969, you have solved a key problem on the Apollo lander, and you believe that the 1970 audience would like to hear about your
+% solution.
+% The work is a development of your celebrated 1968 paper entitled ``Zero-g frobnication: How being the only people in the world with access to the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
 
-This is incorrect: ``... subsequently developed by Alpher \etal~\cite{Alpher03} ...'' because reference~\cite{Alpher03} has just two authors.
+% You can handle this paper like any other.
+% Do not write ``We show how to improve our previous work [Anonymous, 1968].
+% This time we tested the algorithm on a lunar lander [name of lander removed for blind review]''.
+% That would be silly, and would immediately identify the authors.
+% Instead write the following:
+% \begin{quotation}
+% \noindent
+%    We describe a system for zero-g frobnication.
+%    This system is new because it handles the following cases:
+%    A, B.  Previous systems [Zeus et al. 1968] did not  handle case B properly.
+%    Ours handles it by including a foo term in the bar integral.
 
-\begin{figure*}
-  \centering
-  \begin{subfigure}{0.68\linewidth}
-    \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
-    \caption{An example of a subfigure.}
-    \label{fig:short-a}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}{0.28\linewidth}
-    \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
-    \caption{Another example of a subfigure.}
-    \label{fig:short-b}
-  \end{subfigure}
-  \caption{Example of a short caption, which should be centered.}
-  \label{fig:short}
-\end{figure*}
+%    ...
+
+%    The proposed system was integrated with the Apollo lunar lander, and went all the way to the moon, don't you know.
+%    It displayed the following behaviours, which show how well we solved cases A and B: ...
+% \end{quotation}
+% As you can see, the above text follows standard scientific convention, reads better than the first version, and does not explicitly name you as the authors.
+% A reviewer might think it likely that the new paper was written by Zeus \etal, but cannot make any decision based on that guess.
+% He or she would have to be sure that no other authors could have been contracted to solve problem B.
+% \medskip
+
+% \noindent
+% FAQ\medskip\\
+% {\bf Q:} Are acknowledgements OK?\\
+% {\bf A:} No.  Leave them for the final copy.\medskip\\
+% {\bf Q:} How do I cite my results reported in open challenges?
+% {\bf A:} To conform with the double-blind review policy, you can report results of other challenge participants together with your results in your paper.
+% For your results, however, you should not identify yourself and should not mention your participation in the challenge.
+% Instead present your results referring to the method proposed in your paper and draw conclusions based on the experimental comparison to other results.\medskip\\
+
+% \begin{figure}[t]
+%   \centering
+%   \fbox{\rule{0pt}{2in} \rule{0.9\linewidth}{0pt}}
+%    %\includegraphics[width=0.8\linewidth]{egfigure.eps}
+
+%    \caption{Example of caption.
+%    It is set in Roman so that mathematics (always set in Roman: $B \sin A = A \sin B$) may be included without an ugly clash.}
+%    \label{fig:onecol}
+% \end{figure}
+
+% \subsection{Miscellaneous}
+
+% \noindent
+% Compare the following:\\
+% \begin{tabular}{ll}
+%  \verb'$conf_a$' &  $conf_a$ \\
+%  \verb'$\mathit{conf}_a$' & $\mathit{conf}_a$
+% \end{tabular}\\
+% See The \TeX book, p165.
+
+% The space after \eg, meaning ``for example'', should not be a sentence-ending space.
+% So \eg is correct, {\em e.g.} is not.
+% The provided \verb'\eg' macro takes care of this.
+
+% When citing a multi-author paper, you may save space by using ``et alia'', shortened to ``\etal'' (not ``{\em et.\ al.}'' as ``{\em et}'' is a complete word).
+% If you use the \verb'\etal' macro provided, then you need not worry about double periods when used at the end of a sentence as in Alpher \etal.
+% However, use it only when there are three or more authors.
+% Thus, the following is correct:
+%    ``Frobnication has been trendy lately.
+%    It was introduced by Alpher~\cite{Alpher02}, and subsequently developed by
+%    Alpher and Fotheringham-Smythe~\cite{Alpher03}, and Alpher \etal~\cite{Alpher04}.''
+
+% This is incorrect: ``... subsequently developed by Alpher \etal~\cite{Alpher03} ...'' because reference~\cite{Alpher03} has just two authors.
+
+% \begin{figure*}
+%   \centering
+%   \begin{subfigure}{0.68\linewidth}
+%     \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+%     \caption{An example of a subfigure.}
+%     \label{fig:short-a}
+%   \end{subfigure}
+%   \hfill
+%   \begin{subfigure}{0.28\linewidth}
+%     \fbox{\rule{0pt}{2in} \rule{.9\linewidth}{0pt}}
+%     \caption{Another example of a subfigure.}
+%     \label{fig:short-b}
+%   \end{subfigure}
+%   \caption{Example of a short caption, which should be centered.}
+%   \label{fig:short}
+% \end{figure*}
