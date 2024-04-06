@@ -1,0 +1,80 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[A.Mumuni and Mumuni(2022)]{Alpher03}
+A.Mumuni and F. Mumuni.
+\newblock Data augmentation: A comprehensive survey of modern approaches.
+\newblock \emph{Elsevier}, 16\penalty0 (1), 2022.
+
+\bibitem[Armor et~al.(2016)Armor, Su, and Srivastava]{Alpher02}
+B.B. Armor, J. Su, and A. Srivastava.
+\newblock Action recognition using rate-invariant analysis of skeletal shape
+  trajectories.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 38\penalty0 (1):\penalty0 1--13, 2016.
+
+\bibitem[Baradel(2004)]{Alpher04}
+F. Baradel.
+\newblock \emph{Structured deep learning for video analysis}.
+\newblock PhD thesis, 2004.
+
+\bibitem[Bernstein(2023)]{Alpher09}
+S. Bernstein.
+\newblock What is physical therapy?
+\newblock \emph{WebMD}, 2023.
+
+\bibitem[Buwaneka et~al.(2023)Buwaneka, Samadder, and Sharma]{Authors14c}
+V. Buwaneka, A. Samadder, and K. Sharma.
+\newblock Dancevideo, 2023.
+
+\bibitem[Cao et~al.(2019)Cao, Martinez, Simon, Wei, and Sheikh]{Alpher07}
+Z. Cao, G.~Hidalgo Martinez, T. Simon, S. Wei, and Y.~A. Sheikh.
+\newblock Openpose: Realtime multi-person 2d pose estimation using part
+  affinity fields.
+\newblock \emph{IEEE Transactions on Pattern Analysis and Machine
+  Intelligence}, 2019.
+
+\bibitem[Chan et~al.(2019)Chan, Ginosar, Zhou, and Efros]{Authors14d}
+C. Chan, S. Ginosar, T. Zhou, and A. Efros.
+\newblock Everybody dance now, 2019.
+
+\bibitem[Jafarian and Park(2021)]{Authors14e}
+Y. Jafarian and H. Park.
+\newblock Learning high fidelity depths of dressed humans by watching social
+  media dance videos, 2021.
+
+\bibitem[LeViet(2021)]{Authors14a}
+K. LeViet.
+\newblock Pose estimation and classification on edge devices with movenet and
+  tensorflow lite, 2021.
+
+\bibitem[Maureentkt(2021)]{Alpher08}
+Maureentkt.
+\newblock Selecting your real-time pose estimation models.
+\newblock \emph{Medium}, 2021.
+
+\bibitem[MediaPipe(2023)]{Authors14f}
+MediaPipe.
+\newblock Pose landmark detection guide, 2023.
+
+\bibitem[OpenCV(2024)]{Authors14b}
+OpenCV.
+\newblock Open source computer vision library, 2024.
+
+\bibitem[Pang and Niu(2023)]{Alpher05}
+Y. Pang and Y. Niu.
+\newblock Dance video motion recognition based on computer vision and image
+  processing.
+\newblock \emph{Applied Artificial Intelligence}, 37\penalty0 (1), 2023.
+
+\bibitem[Yang and He(2022)]{Alpher06}
+M. Yang and Z. He.
+\newblock Dance action recognition model using deep learning network in
+  streaming media environment.
+\newblock \emph{PMC}, 2022.
+
+\end{thebibliography}
