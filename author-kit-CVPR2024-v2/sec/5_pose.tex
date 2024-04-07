@@ -1,41 +1,40 @@
 \section{Pose Estimation Models}
-\label{sec:models}
+\label{sec:pose}
 
 The first step in developing this project was to define the parameters and requirements in order to choose models and algorithms that satisfy our expectations.
 The first model that will be implemented on our project is a Pose Estimation Model. The requirements we defined were: limit GPU usage, multiple persons detection, 
 and output in the form of JSON files, in order to be transferable and readible for the subsequent sections of our project.  We also set a high priority on accuracy,
-due to the requirements for the other portions of our project\cite{Alpher08}. 
+due to the requirements for the other portions of our project\cite{Alpher08}. The following section will highlight our research, testing, and challenges, as well as the 
+factors that influenced our decision-making process.
 
 %-------------------------------------------------------------------------
 \subsection{Model Choices}
  
-Options that we considered for use in this project include OpenPose, MediaPipe, and MoveNet. All of which will be detailed below.
+In order for our project to work as intended, we needed to make sure we started by using the optimal tools for data collection. Our project was in need of a pose estimation model, and some options that we considered were OpenPose, MediaPipe, and MoveNet.
+\\
+\begin{enumerate}
+    \item MediaPipe: MediaPipe is a Framework with many applications that have been widely used by Google for numerous products and services\cite{Authors14f}. For this project specifically, MediaPipe would aid specifically in pose detection and video processing using OpenCV. 
+    Unfortunately, this is limited to single-person analysis, and we wanted to account for the possibility of expanding our project to process videos with multiple people.
+    \\
+    \item MoveNet: MoveNet is another pose estimation model that we considered. Developed by Google, it utilizes deep learning techniques, and is an improved version of the previous generation PoseNet model (released in 2017)\cite{Authors14a}. Though this processed our videos 
+    quickly, it did not have the desired accuracy for the video inputs (key points tended to be in the general region of the desired body parts but didn’t always overlap fully, which led to doubts on its ability to capture the fine granularity we wanted for 
+    detailed dance movements).
+    \\
+    \item OpenPose: OpenPose is yet another software for pose estimation, which has proved to work well when evaluating multiple persons, even for more crowded scenes. It uses a bottom-up approach to produce higher quality results, though at a higher 
+    computational cost compared to MediaPipe and MoveNet\cite{Alpher07}. Additionally, it outputs JSON files, one per video frame, containing data for keypoints (e.g., left knee, right knee, etc.) that were easier to process. \\
+\end{enumerate}
 
-The first model we tested was MediaPipe, which is a Framkework with many applications that has been widely used by Google for 
-numerous products and services\cite{Authors14f}. Although, at first glance MediaPipe providedsatisfactory results, after further inspection and 
-testing, the model did not satisfy our requirements. The first limitation is that MediaPipe only performs single-person analysis. Other limitations 
-we encountered after testing were lower accuracy than expected, as well as difficulty converting the output into JSON filed.Thus, we continued 
-our research for other models. 
-
-Our second option was MoveNet, which is a pose estimation model developed by Google, which uses deep learning techniques. It is an improved version 
-of the previous generation PoseNet model, released in 2017\cite{Authors14a}. Though this worked quickly, it did not have the desired accuracy for the video inputs.
-Similar to MediaPipe, there was significant dificulty converting the output to JSON files. Although this proved more successful than MediaPipe, 
-it still was not satisfying our requirements. 
-
-Finally, we tested OpenPose, a software for pose estimation, which has proved to work well when evaluation multiple persons, even for more crowded scenes. 
-It uses a bottom-up approach to produce higher quality results, through at a higher computation cost compared to MediaPipe and MoveNet\cite{Alpher07}. Additionally, it outputs JSON files, 
-one per video frame, containing data for keypoints (e.g., left knee, right knee, etc.). Because of its high accuracy and usable output, OpenPose was selected for this proejct 
-over MediaPipe and MoveNet.
+Because of its high accuracy and usable output, OpenPose was selected for this project over MediaPipe and MoveNet.
 
 \subsection{Challenges with OpenPose}
 
-Since OpenPose was a rather new concept to our team, we initially had some trouble setting it up and running on our own devices. At first, it appeared to require more significant computational 
-resources that were readily available. However, after extraneous research we were able to set it up and get it runnning properly. Due to our lack of experience with OpenPose, there was a learning 
-curve in figuring out how exactly the model operates and what we could do with it, but over time, we were able to learn how to use it well.
+Initially, OpenPose appeared to require more significant computational resources than were readily available to us (RAM and GPU), but we were able to run the model 
+successfully after closing other running programs on our computers and using the CPU-version of OpenPose. 
+\\
+\indent As we became more familiar with OpenPose, we began testing the effects of different parameters. For instance, we learned that lowering the resolution of a video 
+resulted in a significantly faster processing time. However, this also  caused decreased accuracy in the pose estimation. Thus, after several rounds of testing, 
+we decided against reducing the resolution in our input videos since our project performance doesn’t depend on low latency, but does benefit from higher accuracy.
 
-As we became more familiar and comfortable with the OpenPose model, we were able to test the effects of different types of videos as inputs. We learned that lowering the resolution of a video and 
-then inputting it to the program resulted in a significantly faster processing time. However, this also consistently resulted in decreased accuracy in the pose estimation. Thus, after several rounds 
-of testing, we ultimately decided against reducing the resolution in our input videos since accuracy was crucial to this project.
 
 
 % \subsection{Paper length}
