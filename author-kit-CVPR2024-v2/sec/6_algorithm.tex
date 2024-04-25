@@ -14,19 +14,19 @@ we want to write an algorithm that maps similar movements to the same values, re
 \end{enumerate}
 
 We choose to transition away from absolute positions to position gradients due to inspiration from SIFT’s usage of illumination gradients. Absolute positions 
-could cause our model to unintentionally train on a dancer’s location in the camera view rather than their movements, whereas position gradient should make our 
-model invariant to the dancer’s x, y-positions.
+could cause our model to unintentionally train on an individual's location in the camera view rather than their movements, whereas position gradient should make our 
+model invariant to the individual's x, y-positions.
 \\
-\indent Similarly, by attempting to normalize the position gradients to the length of the dancer’s body part, we hope to make our model invariant to the dancer’s height 
+\indent Similarly, by attempting to normalize the position gradients to the length of the individual's body part, we hope to make our model invariant to his or her height 
 and their distance from the camera (people in the foreground tend to appear taller than people in the background). We choose the right shoulder and right hip 
 specifically because we believe the distance in between to represent a relatively rigid part of the body with a length correlated to a person’s height. Furthermore, 
-we choose the longest length found to account for dance movements that may cause the shoulder and hip to be closer together than usual, while limiting the range to 
+we choose the longest length found to account for exercise movements that may cause the shoulder and hip to be closer together than usual, while limiting the range to 
 2 seconds (32 frames) so that we’re still sensitive to global changes (changes throughout the video) in z position (the distance between the dancer and camera center).
 \\
-\indent Finally, we want to pass in angles calculated from the keypoints. Firstly, this will likely aid the model in considering elliptical motions, which are prevalent in dances, 
+\indent Finally, we want to pass in angles calculated from the keypoints. Firstly, this will likely aid the model in considering elliptical motions, which are prevalent in physical therapy exercises, 
 as a continuous motion, as opposed to a single elliptical motion being calculated as multiple straight-line movements. Additionally, this encodes information about body parts 
-relative to each other. For instance, moving one’s right hand downwards on the left side of one’s body could be differentiated from moving one’s right hand downwards on the right
- side of one’s body through the angle of the right elbow relative to the right shoulder.
+relative to each other. For instance, moving one’s right hand downwards on the left side of one’s body could be differentiated from moving one’s right hand downwards on the right 
+side of one’s body through the angle of the right elbow relative to the right shoulder.
 
 
 % \subsection{Paper length}
