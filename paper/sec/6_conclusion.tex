@@ -1,0 +1,49 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+\indent Through this project, we were able to utilize computer vision 
+techniques to create a program tailored to improve patient adherence to 
+recovery plans in physical therapy. We consider this to be the beginning 
+of a greater work with its applicability not just in physical therapy 
+but also in the healthcare industry and beyond.
+
+\subsection{Limitations}
+\indent Although we believe our project proves large progress, it did 
+come with its fair share of limitations. As previously stated the camera 
+angle between the videos must be the same, otherwise the scores will not 
+accurately reflect their performance. This is due to the fact that our 
+Gesture Detection algorithm is overly simple. 
+
+\indent Another major limitation we faced in the creation of the project 
+is the time bottleneck from OpenPose. Due to our restrictions with GPU 
+access, we were forced to downscale the data we processed; either 
+through resolution or duration. Downscaling the resolution proved to 
+reduce the most time, however, it also produced questionable keypoints. 
+Thus, for the purpose of testing, we were forced to process shorter 
+videos at full resolution, in order to get the most accurate keypoints 
+from OpenPose; this resulted in a vast time limitation as a 16-second 
+video took 34 minutes to process.
+
+\subsection{Implications}
+\indent For future implementations of this project, we would focus on 
+matching movements, generate difficulty levels for exercises, and expand 
+the scope of the project to also analyze other physical activities. 
+
+\indent Currently, our project can match poses, but we would like 
+to further develop this to match movements too. This way, if a patient 
+wanted to practice a specific motion, like raising the arm, they would 
+be able to easily find exercises that would help them practice this. 
+
+\indent We would also like to have our project be able to give a 
+difficulty rating for exercises as it analyzes the poses. This would be 
+so that those in the early stages of physical therapy can see which 
+exercises are useful to them. 
+
+\indent The final update would be to expand the project’s scope to 
+other physical activities. Specifically, we would like to focus on 
+dance. The project would be able to determine a dancer’s accuracy, and 
+offer many practice dance movements from various genres that the 
+dancer can practice with. Another implication could be martial arts, 
+which would work in the same way that physical therapy and dance would, 
+but be tailored for any unexpected specifications that martial arts 
+requires. 
