@@ -1,0 +1,59 @@
+\section{Methods}
+\subsection{Keypoint Detection with OpenPose}
+We had three main criteria when selecting an existing library with which to detect body parts.
+\begin{enumerate}
+    \item The library had to store model outputs in an easily readable, non-proprietary format, such as JSON, 
+    so that we could easily work with it.
+    \item The model must perform reasonably well on a CPU. When we began our project, we were unsure of how 
+    to secure GPU access, and we needed a model that could provide meaningful outputs even if we failed to 
+    set up a system for using GPUs.
+    \item Ideally, the model possessed capability to detect multiple people in a given frame. Although we did 
+    not prioritize our product’s ability to process videos with multiple people, we wanted the flexibility to 
+    add that functionality later without a potential overhead from switching our library of choice.
+\end{enumerate}
+With the above considerations in mind, we evaluated MediaPipe, MoveNet, and OpenPose.
+
+We first explored MediaPipe, a versatile framework by Google that supported vision, natural language, and audio 
+tasks. With its lightweight design for on-device ML and target towards time-series data, we found its performance 
+promising. However, it appeared to only support single-person pose detection, so we set it aside early on to 
+spare our future selves the pain of transitioning to a different library.
+	
+We also investigated Tensorflow’s MoveNet, incidentally also part of Google. Built upon MobileNet, it had a 
+satisfyingly low resource consumption. However, with the initial configurations that we had tested, it seemed to 
+have poor accuracy, with keypoints often hovering in the general region of the desired body parts, but not truly 
+aligning with the body joints. Because physical therapy patients may have injuries that cause lower tolerances 
+for certain movements, we decided against using MoveNet.
+	
+Finally, we decided to try OpenPose. We quickly learned of its ability to output key points from each frame of a 
+video as a JSON file. Additionally, not only does OpenPose enable multi-person pose detection, but it also appeared 
+to support 3D keypoint detection when two camera perspectives were provided. While we did not plan for the possibility 
+of 3D keypoint detection, we were intrigued by the potential, and believed its progress to be evidence that OpenPose 
+was still being maintained. Hence, we chose OpenPose for keypoint detection.
+	
+While OpenPose does have a higher performance overhead than the other two models, we consider it a worthy trade for the 
+improved accuracy and the increased options for input videos (many of which may have more than one person). In fact, while 
+testing OpenPose’s hyperparameters, we learned that lowering the video resolution caused a significant speedup in 
+processing time, but we were ultimately against reducing the resolution in our input videos because our project 
+performance doesn’t depend on low latency, but it does benefit from higher accuracy.
+
+\subsection{Feature Transform}
+For a given video, OpenPose outputs a directory of json files, with one for each frame. Before passing these outputs to a 
+second machine learning model, we wanted an algorithm that could map similar poses and movements to the same values, 
+regardless of camera angle or relative location of the person to the camera. (Due to the nature of OpenPose outputting x, 
+y values for keypoints, we have already circumvented the issue of changes in illumination.)  Our keypoint-to-angle algorithm 
+aims to:
+\begin{itemize}
+    \item Greatly reduce the role of absolute pixel locations in identifying features
+    \item Make the model invariant to differences in the user’s body structure
+    \item Detect straight-line, elliptical, and hybrid motion
+\end{itemize}
+
+We choose to transition away from absolute positions due to inspiration from SIFT’s usage of illumination gradients over 
+absolute color values. Absolute positions could cause our model to unintentionally train on an individual's location in the 
+camera view., y-positions. Similarly, we hoped to make our model invariant to the user’s height and distance from the camera 
+(people in the foreground tend to appear taller than people in the background). 
+
+Thus, we decided to add some math equations to transform our features from absolute x, y positions to angles between detected 
+key points. Additionally, this will likely aid the model in recognizing elliptical motions, which are prevalent in physical 
+therapy exercises, as a continuous motion, as opposed to a given, singular elliptical motion being calculated as multiple 
+straight-line movements. Additionally, this encodes information about body parts relative to each 
