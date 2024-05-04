@@ -1,18 +1,110 @@
-\section{Introduction}
-\label{sec:intro}
+\section{Literature Review}
+\label{sec:litreview}
 
-\indent Over 50 million Americans seek physical therapy every year, whether that be from 
-musculoskeletal conditions, car accidents, or sports injuries. Evidently, there is a large
-need for physical therapy\cite{Authors14i}. However, only 35\% of PT patients actually adhere to their assigned 
-plan\cite{Authors14h}. This is a significant problem since the majority of patients are not following 
-through with their exercises and thus decrease the effectiveness of their therapy plan.
+\indent Because patient adherence to physical therapy is such a large problem in the healthcare industry, we aim to 
+improve this by assisting physical therapy patients through computer vision techniques. This will positively impact 
+their wellbeing and treatment success rates. Our review explores strategies to enhance adherence, covering existing 
+attempts, key techniques, challenges, and the technical gap. From VR to advanced computer vision, our examination aims 
+to make physical therapy more accessible and effective.
+
+%-------------------------------------------------------------------------
+\subsection{Existing Attempts}
+\indent Several existing attempts have been made to tackle the challenge of improving patient adherence, 
+each with its own approach and limitations. One such approach involves utilizing monitoring technology, 
+such as pedometers, which have proved to be user-friendly. Though such monitoring technologies are 
+able to monitor, or track, the patients' physical activity decently well, there was not much of an effect in terms 
+of improving their adherence to their exercise plans\cite{Alpher10}. As a result, patients using such technologies still struggle with 
+adhering to their exercise plans.
 \\
-\indent We aim to use Computer Vision to partition each exercise movement into more easily digestible chunks 
-by creating a model that can learn (vectorize) each exercise movement from two given videos, an instructional 
-one and a patient one, and compare the two. By developing a tool that provides feedback as a result of analyzing 
-the two videos, which ideally should match perfectly, adhering to an exercise plan 
-becomes much more feasible, enjoyable, and even motivating.
+\indent Another attempt that has been made is virtual and augmented reality treatment. Through this method, patients 
+are able to put on their VR headsets and transport into any environment they would like to complete their exercises in. 
+The possibilities are endless: they could surround themselves in peaceful, serene nature, or they could 
+opt for a more competitive gaming atmosphere. Physical therapists have found that this actually 
+makes their treatment plans more appealing and thus improves their patient adherence rates\cite{Authors14j}. However, 
+it is important to note that this is significantly more expensive. The cost associated with this 
+method is typically too high for the majority of patients and thus makes this approach less practical.
+\\
+\indent Unlike the aforementioned methods, our proposed method is low-cost, accessible, and effective. 
+Implementing the aspect of gamification allows for physical therapy to be fun yet productive. Patients become 
+competitors, working hard to beat their previous scores. Additionally, our method could be expanded to offer 
+further personalized feedback based on the analysis of the learner's own video and the given instructional video, 
+ideally without the requirement for perfect lighting or camera angle conditions.
 
+\subsection{Useful Techniques}
+\indent There are many existing computer vision techniques that can be applied to creating an aid for learning exercises. 
+One such technique involves exploring 3D models instead of traditional 2D skeletonization
+ methods to create more comprehensive representations of the exercise movements. Unlike 2D skeletonization, 
+ which captures only the spatial coordinates of key body joints in a single plane, 3D modeling 
+ techniques can capture the full spatial extent of exercise movements, including depth information\cite{Alpher03}. This 
+ allows for a more accurate and detailed representation of the individual's body and movements in 
+ three-dimensional space, which is particularly valuable for capturing complex and multi-dimensional 
+ exercise movements\cite{Authors14b}.
+\\
+\indent In addition to 3D modeling, other computer vision techniques such as action recognition, pose 
+estimation, trajectory analysis, and video segmentation and tracking can provide valuable insights 
+into the dynamics of exercise movements.
+\begin{enumerate}
+  \item Action recognition algorithms can automatically identify and classify different gestures and 
+  even exercise sequences, allowing for automated analysis of exercise patterns and styles.
+  \item Pose estimation techniques can accurately estimate the skeletal poses of 
+  people from video frames, providing a structural representation of their movements that can be 
+  used for further analysis and interpretation.
+  \item Trajectory analysis techniques can track the trajectories of specific body parts or exercise movements 
+  over time, allowing for the analysis of exercise movement patterns, velocities, and accelerations\cite{Alpher02}. This 
+  provides valuable insights into the dynamic aspects of these exercises, 
+  helping learners to better understand the timing and pacing of the movements.
+  \item Video segmentation and tracking methods also serve to segment the videos into individual sequences or movements, allowing for more 
+  focused analysis and comparison of specific elements.
+\end{enumerate} 
+\\
+\indent By leveraging these advanced computer vision techniques, learners can gain a deeper understanding 
+of the dynamics and nuances of exercise movements, facilitating more effective learning experiences. 
+These techniques can help learners to break down complex movements into smaller, more 
+manageable components, identify areas for improvement, and refine their technique with greater 
+precision and accuracy. Overall, the integration of computer vision into physical therapy has the 
+potential to revolutionize the way patients approach their recovery plan, making it more accessible, engaging, 
+and effective for patients of all levels.
+
+\subsection{Challenges}
+\indent Several challenges arise from attempting this project. One is the quality of input data, which 
+encompasses various factors such as lighting, angles, occlusions, frame rates, and blurring. These 
+factors can significantly impact the accuracy of movement analysis, as they can obscure or distort 
+key visual information needed for understanding exercise movements. Addressing these challenges may 
+require the development of robust computer vision algorithms capable of handling noisy or low-quality 
+video data, as well as techniques for preprocessing and enhancing the visual information to improve 
+analysis accuracy.
+\\
+\indent Moreover, handling interactions between multiple persons in an input video presents additional 
+complexities in accurately capturing and representing exercise movements. In some videos, 
+there may be two individuals present that interact with each other in complex ways. It is not uncommon for  
+one to assist the other in certain movements, for example, by helping lift up or stretch their legs. 
+Capturing these interactions and accurately representing them in the analysis poses challenges for 
+computer vision algorithms, as they must be able to differentiate between individuals 
+and track their movements independently while also accounting for their interactions with others. 
+Addressing this challenge may require the development of advanced tracking and segmentation techniques 
+capable of accurately identifying and tracking multiple persons in a dynamic environment.
+\\
+\indent Overall, addressing these challenges requires a multidisciplinary approach that combines expertise 
+in computer vision, exercise analysis, and human-computer interaction. By developing robust algorithms, 
+incorporating domain-specific knowledge, and leveraging advanced techniques for handling complex 
+visual data, it is possible to create a tool that effectively supports learning exercises from  
+videos using computer vision. However, continued research and development efforts are needed to 
+overcome these challenges and realize the full potential of computer vision technology in the 
+field of physical therapy.
+
+\subsection{Technical Gap}
+\indent The primary aim of this project is to reduce the technical gap between physical therapy videos and 
+effective recovery plans. By enabling the correspondence between individuals with different body proportions 
+captured from various angles, this tool seeks to enhance the accessibility and inclusivity of these exercises plans. 
+This interdisciplinary endeavor involves collaboration between experts in physical therapy, biomechanics, and computer 
+vision, with computer vision providing quantitative analysis capabilities to enhance the understanding and 
+teaching of exercise movements.
+\\
+\indent In conclusion, developing a tool for learning exercises from physical therapy videos using computer vision holds 
+great potential for revolutionizing physical therapy plans and making them more accessible and doable to a wider 
+audience. By leveraging advanced computer vision techniques and interdisciplinary collaboration, 
+this project aims to bridge the gap between physical therapy videos and effective recovery plans, 
+ultimately empowering individuals to learn and appreciate physical therapy in new and innovative ways.
 
 % \subsection{Paper length}
 % Papers, excluding the references section, must be no longer than eight pages in length.
