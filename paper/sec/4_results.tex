@@ -1,0 +1,25 @@
+\section{Results}
+\label{sec:results}
+
+\indent We had one of our teammates record physical therapy exercises and used those videos to compare with 
+the Cornell videos. From the human eye, it looked as though our teammates' video was extremely accurate, and 
+our algorithm supported this theory.  
+
+\indent Given a pose, we are able to identify similar poses in different videos from a database that we 
+curated. This encourages the patient to be more engaged with the exercises, since the exercises do not have to 
+ from the medical Cornell database, but rather also from dance.
+
+\subsection{User Customization Options}
+\indent Our project offers the user some simple customization options so that it can be catered to individuals. 
+These are the difficulty levels and the body part isolation features.
+
+\indent The difficulty is separated into three levels: easy, medium, and hard. Each level has a specific threshold 
+of accuracy that is used to score the patient's video: Easy had a threshold of 60, medium 45, and hard 30. The 
+difference between the angles of the two videos has to be less than or equal to this threshold to be considered “perfect” for each level. 
+
+\indent The project can also isolate specific body parts to score. The accuracy of the exercises takes the whole body into consideration, 
+so some body parts that remain idle will raise the accuracy just by being there. This feature allows the patient to decide 
+what they want to be scored, so that if there is a specific body part they want to isolate in their practicing, they are 
+able to get scores of that accordingly. This feature scores the same way as normal but utilizes the body part extraction feature 
+from OpenPose. This can be especially useful if the patient is receiving treatment for a specific body part. For example, if 
+they injured their arm, they may want feedback specifically on their arm to see how they are doing.
