@@ -56,4 +56,40 @@ camera view., y-positions. Similarly, we hoped to make our model invariant to th
 Thus, we decided to add some math equations to transform our features from absolute x, y positions to angles between detected 
 key points. Additionally, this will likely aid the model in recognizing elliptical motions, which are prevalent in physical 
 therapy exercises, as a continuous motion, as opposed to a given, singular elliptical motion being calculated as multiple 
-straight-line movements. Additionally, this encodes information about body parts relative to each 
+straight-line movements. Additionally, this encodes information about body parts relative to each other. For 
+instance, moving one’s right hand downwards on the left side of one’s body could be differentiated from moving 
+one’s right hand downwards on the right side of one’s body through the angle of the right elbow relative to 
+the right shoulder.
+
+\subsection{Pose and Gesture Extraction}
+By the temporal nature of videos and humans’ inability to teleport, many frames have body angles that are 
+close in value to those of the neighboring frames, similar to how in images, many pixels may have color 
+values close to their neighbors. It would be inefficient to always work with all of the frames in a given 
+video. In fact, in images, features are often only extracted for corners. We suggest the idea of extracting 
+poses and gestures from videos.
+
+While the algorithm we’ve designed is inspired by the Harris Corner Detector, poses and gestures differ from 
+corners in that we’re not looking for a gradient across all dimensions. Intuitively, this makes sense: even 
+if a person were to stand-in place (not change the angles in their lower body), we would still consider a 
+hand-wave to be a gesture, and raising different hands would be considered different poses. 
+
+To reiterate, unlike a corner, which only has two dimensions x and y, a pose or gesture would have as many 
+dimensions as there are angles. Additionally, while corners are detected based on the ratio of the 
+eigenvalues, we’re more concerned with having one strong edge or many weak edges in identifying a gesture: 
+requiring all angles to change would omit basic gestures like a simple hand wave because the majority of 
+angles in the body wouldn’t change. Hence, we use Euclidean Distance as a “change in body position” score.
+
+Another point of interest is that poses would have a low “change in body position” score. Going back to the 
+corner detection analogy, poses are analogous to a flat area within an  image, yet they arguably define a 
+person’s physical actions more than the brief moments of highest “change in body position”. Thus, to extract 
+poses from angles, we actually apply non-minimum suppression (instead of the Harris Corner Detector’s 
+non-maximum suppression) after calculating the Euclidean Distance between angles in adjacent frames.
+
+Meanwhile, we consider a gesture to be the opposite of a pose, a small range of frames when there is a 
+significant “change in body position”. Arguably, a gesture would take place for all the frames between 
+two poses, not just for moments of the fastest “change in body position”. However, because we applied a 
+threshold that selects only a subset of the most significant poses, the above definition may cause multiple 
+gestures to be recognized as one, so we have currently defined a gesture to be three consecutive frames of 
+significant change in angles. (However, it could be interesting to explore modified algorithms for detecting 
+poses and gestures in future work.)
+
