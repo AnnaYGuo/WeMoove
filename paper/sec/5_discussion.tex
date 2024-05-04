@@ -1,0 +1,28 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\indent This project had some unexpected setbacks which we worked towards solving. 
+
+\indent To identify poses, we needed to find the distances between the angles of frames, 
+but we originally had some trouble with the euclidean distance formula. The base formula 
+was too sensitive to noise in the movements of the subject, which meant that the algorithm 
+was overfitted to the data. By flooring some of the angle gradients, we were able to account 
+for noise. This made the algorithm more resistant to slight differences in position, camera 
+angle, orientation of the subject, etc. 
+
+\indent Initially, the algorithm returned low accuracy scores for two videos that seemed 
+otherwise quite similar. In order to ensure that the algorithm was working correctly as 
+intended, an example video was run against itself, with an expected and actual accuracy 
+result of 100\%. This demonstrated that the algorithm was working but needed to use some 
+sort of threshold or margin of error.
+
+\indent We also conducted manual testing ourselves, making sure that the accuracy score 
+from the algorithm made sense with the two input videos. For example, if the videos are 
+quite similar, we expect a high accuracy score, but if they are vastly different, 
+we expect a low accuracy score.
+
+\indent We tested individuals of different heights to ensure that height did not create 
+a large difference in terms of accuracy score. For example, if the individual in the 
+instruction video is very tall, but the patient is very short and follows the video perfectly, 
+the calculation of the angles should ensure that height is not a factor that would limit 
+the accuracy score.
