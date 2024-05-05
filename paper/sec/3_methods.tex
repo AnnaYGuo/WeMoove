@@ -40,6 +40,10 @@ testing OpenPose’s hyperparameters, we learned that lowering the video resolut
 processing time, but we were ultimately against reducing the resolution in our input videos because our project 
 performance doesn’t depend on low latency, but it does benefit from higher accuracy.
 
+\includegraphics[width=\columnwidth]{sec/openpose_demo}
+\textit{Figure 2. OpenPose in action: pose detection on a frame from an input video of two people. 
+OpenPose accurately detects the key points on both people despite their slightly unorthodox body positions.}
+
 \subsection{Feature Transform}
 \indent For a given video, OpenPose outputs a directory of json files, with one for each frame. Before passing these outputs to a 
 second machine learning model, we wanted an algorithm that could map similar poses and movements to the same values, 
