@@ -45,7 +45,7 @@ performance doesn’t depend on low latency, but it does benefit from higher acc
 OpenPose accurately detects the key points on both people despite their slightly unorthodox body positions.}
 
 \subsection{Feature Transform}
-\indent For a given video, OpenPose outputs a directory of json files, with one for each frame. Before passing these outputs to a 
+\indent For a given video, OpenPose outputs a directory of JSON files, with one for each frame. Before passing these outputs to a 
 second machine learning model, we wanted an algorithm that could map similar poses and movements to the same values, 
 regardless of camera angle or relative location of the person to the camera. (Due to the nature of OpenPose outputting x, 
 y values for keypoints, we have already circumvented the issue of changes in illumination.)  Our keypoint-to-angle algorithm 
