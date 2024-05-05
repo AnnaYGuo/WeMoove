@@ -89,13 +89,13 @@ angles in the body wouldn’t change. Hence, we use Euclidean Distance as a “c
 
 \indent Another point of interest is that poses would have a low “change in body position” score. Going back to the 
 corner detection analogy, poses are analogous to a flat area within an  image, yet they arguably define a 
-person’s physical actions more than the brief moments of highest “change in body position”. Thus, to extract 
+person’s physical actions more than the brief moments of highest “change in body position.” Thus, to extract 
 poses from angles, we actually apply non-minimum suppression (instead of the Harris Corner Detector’s 
 non-maximum suppression) after calculating the Euclidean Distance between angles in adjacent frames.
 
 \indent Meanwhile, we consider a gesture to be the opposite of a pose, a small range of frames when there is a 
-significant “change in body position”. Arguably, a gesture would take place for all the frames between 
-two poses, not just for moments of the fastest “change in body position”. However, because we applied a 
+significant “change in body position.” Arguably, a gesture would take place for all the frames between 
+two poses, not just for moments of the fastest “change in body position.” However, because we applied a 
 threshold that selects only a subset of the most significant poses, the above definition may cause multiple 
 gestures to be recognized as one, so we have currently defined a gesture to be three consecutive frames of 
 significant change in angles. (However, it could be interesting to explore modified algorithms for detecting 
