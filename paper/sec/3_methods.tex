@@ -50,15 +50,15 @@ second machine learning model, we wanted an algorithm that could map similar pos
 regardless of camera angle or relative location of the person to the camera. (Due to the nature of OpenPose outputting x, 
 y values for keypoints, we have already circumvented the issue of changes in illumination.)  Our keypoint-to-angle algorithm 
 aims to:
-\begin{itemize}
+\begin{enumerate}
     \item Greatly reduce the role of absolute pixel locations in identifying features
     \item Make the model invariant to differences in the user’s body structure
     \item Detect straight-line, elliptical, and hybrid motion
-\end{itemize}
+\end{enumerate}
 
 \indent We choose to transition away from absolute positions due to inspiration from SIFT’s usage of illumination gradients over 
 absolute color values. Absolute positions could cause our model to unintentionally train on an individual's location in the 
-camera view., y-positions. Similarly, we hoped to make our model invariant to the user’s height and distance from the camera 
+camera view. Similarly, we hoped to make our model invariant to the user’s height and distance from the camera 
 (people in the foreground tend to appear taller than people in the background). 
 
 \indent Thus, we decided to add some math equations to transform our features from absolute x, y positions to angles between detected 
@@ -122,6 +122,6 @@ with the videos of ourselves following the exercises. The accuracy of
 our model was determined by comparing our test video with the Cornell 
 video, and determining on our own if the numerical accuracy generated 
 by the model seemed accurate. For example, a patient video following 
-the instructional video perfectly should yield a 100% accuracy score, 
+the instructional video perfectly should yield a 100\% accuracy score, 
 whereas a patient video that does not follow the instructional video 
 well should yield a lower score.
